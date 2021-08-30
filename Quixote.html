@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File_Form</title>
+    <style media="screen">
+        #custom-button {
+            padding: 10px;
+            color: white;
+            background-color: rgb(112, 160, 119);
+            border: 2px solid #000;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        #custom-button:hover {
+            background-color: green;
+        }
+        #custom-text {
+            margin-left: 20px;
+            font-family: sans-serif;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <p>A utility web-page which have three buttons (Select File, Upload, My Links).</p>
+    <input type="file" id="real-file" hidden="hidden" />
+    <button type="button" id="custom-button">Choose A File</button>
+    <span id="custom-text">No file chosen, yet.</span><br>
+    <input type="submit">
+
+
+    <script type="text/javascript">
+        const realFileBtn = document.getElementById("real-file");
+        const customBtn = document.getElementById("custom-button");
+        const customText = document.getElementById("custom-text");
+
+        customBtn.addEventListener("click", function() {
+            realFileBtn.click();
+        });
+
+        realFileBtn.addEventListener("change", function() {
+            if (realFileBtn.value) {
+                customText.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+            } else {
+                customText.innerHTML = "No file chosen, yet.";
+            }
+        });
+        
+    </script>
+</body>
+</html>
